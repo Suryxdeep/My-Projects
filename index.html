@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Americos Chemicals | Smart & Colour Changing Pigments</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Section specific polish */
+    .hero-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero-badge-pill .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 10px var(--primary);
+      animation: blink 1.5s infinite;
+    }
+    .stat-strip {
+      background: #f8fafc;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 36px 0;
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      text-align: center;
+      gap: 20px;
+    }
+    .stat-val {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -0.02em;
+    }
+    .stat-lbl {
+      color: #64748b;
+      font-size: 0.88rem;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+    .calc-card {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 32px;
+      max-width: 650px;
+      margin: 0 auto;
+      box-shadow: var(--shadow);
+    }
+    .calc-input-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .calc-input-group input {
+      flex: 1;
+      padding: 14px 18px;
+      border: 1px solid var(--border);
+      border-radius: var(--pill);
+      font-size: 1rem;
+      font-family: inherit;
+      outline: none;
+    }
+    .calc-input-group input:focus {
+      border-color: var(--primary);
+    }
+    .calc-res-box {
+      margin-top: 24px;
+      background: #f1f5f9;
+      border-radius: 12px;
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+      .calc-input-group { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="index.html" class="logo">
+          <div class="logo-icon"></div>
+          Americos
+        </a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="admin.html" style="color:var(--primary); font-weight:700;">Admin Dashboard</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="cart.html" class="cart-btn" aria-label="View Shopping Cart">
+            🛍️ <span id="cart-count">0</span>
+          </a>
+          <button id="menu-toggle" aria-label="Toggle navigation menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline poster="">
+      <source src="https://cdn.mixkit.co/videos/preview/mixkit-colors-and-ink-on-water-28-large.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-video-overlay"></div>
+    <div class="hero-particles" id="particles-container"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge-pill">
+          <span class="dot"></span>
+          <span>Americos Chemicals · Advanced Chromatics</span>
+        </div>
+        <h1>Pigments That <span class="highlight">Change With Nature</span></h1>
+        <p>
+          Engineered thermochromic, photochromic, and glow materials.
+          Supplying industrial manufacturers, masterbatch formulators,
+          and creative innovators across India and globally.
+        </p>
+        <div class="hero-btns">
+          <a href="products.html" class="btn btn-light">
+            Shop Catalog
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+          </a>
+          <a href="about.html" class="btn btn-ghost">Corporate Profile</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MUTE BUTTON -->
+    <button class="video-mute-btn" id="mute-btn" title="Toggle Sound" onclick="toggleMute()">
+      <span id="mute-icon">🔇</span>
+    </button>
+  </section>
+
+  <!-- STAT STRIP -->
+  <div class="stat-strip">
+    <div class="container">
+      <div class="stat-grid">
+        <div class="reveal">
+          <div class="stat-val">25+</div>
+          <div class="stat-lbl">Years Chemical Expertise</div>
+        </div>
+        <div class="reveal">
+          <div class="stat-val">30+</div>
+          <div class="stat-lbl">Active Pigment Varieties</div>
+        </div>
+        <div class="reveal">
+          <div class="stat-val">100%</div>
+          <div class="stat-lbl">Quality Tested & Non-Toxic</div>
+        </div>
+        <div class="reveal">
+          <div class="stat-val">Pan-India</div>
+          <div class="stat-lbl">Express Industrial Dispatch</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="tag">Chromatics Core</span>
+        <h2>Explore Chemical Technologies</h2>
+        <p style="color:#64748b; max-width:540px; margin:8px auto 0;">Specialized physical responsive coatings and compound solutions.</p>
+      </div>
+
+      <div class="category-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:24px;">
+        <a href="products.html?filter=thermochromic" class="cat-card reveal" style="background:linear-gradient(135deg, #1e1b4b, #b91c1c);">
+          <div class="cat-content">
+            <span style="font-size:2.5rem; display:block; margin-bottom:12px;">🌡️</span>
+            <h3>Thermochromic Powders</h3>
+            <p>Reversibly changes transparency or hue at specific temperature thresholds (28°C - 65°C).</p>
+            <span class="btn btn-sm btn-light" style="margin-top:16px;">Browse Series →</span>
+          </div>
+        </a>
+
+        <a href="products.html?filter=photochromic" class="cat-card reveal" style="background:linear-gradient(135deg, #064e3b, #0284c7);">
+          <div class="cat-content">
+            <span style="font-size:2.5rem; display:block; margin-bottom:12px;">☀️</span>
+            <h3>Photochromic Pigments</h3>
+            <p>Activates vivid color shifts instantaneously when exposed to direct sunlight or UV rays.</p>
+            <span class="btn btn-sm btn-light" style="margin-top:16px;">Browse Series →</span>
+          </div>
+        </a>
+
+        <a href="products.html?filter=glow" class="cat-card reveal" style="background:linear-gradient(135deg, #172554, #059669);">
+          <div class="cat-content">
+            <span style="font-size:2.5rem; display:block; margin-bottom:12px;">✨</span>
+            <h3>Phosphorescent Glow</h3>
+            <p>Premium strontium aluminate crystals providing long-duration luminescent nighttime safety output.</p>
+            <span class="btn btn-sm btn-light" style="margin-top:16px;">Browse Series →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="section" style="background:#fafafa;">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="tag">Formulations Catalog</span>
+        <h2>Featured Commercial Batches</h2>
+        <p style="color:#64748b; max-width:500px; margin:8px auto 0;">Standard packs available for research, prototyping, and small run manufacturing.</p>
+      </div>
+
+      <div class="products-grid" id="featured-grid">
+        <!-- Rendered via JS -->
+      </div>
+
+      <div style="text-align:center; margin-top:40px;" class="reveal">
+        <a href="products.html" class="btn btn-outline" style="padding:14px 36px;">View Full 12-Product Catalog →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE CURRENCY API CONVERTER (SHOWCASING REAL API CONSUMPTION) -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="tag">Real-Time FX Calculator</span>
+        <h2>Global B2B Currency Estimator</h2>
+        <p style="color:#64748b; max-width:560px; margin:8px auto 0;">
+          Live exchange rates powered by financial API integration for international client invoicing.
+        </p>
+      </div>
+
+      <div class="calc-card reveal">
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #f1f5f9; padding-bottom:14px;">
+          <div>
+            <h4 style="margin:0;">USD to INR Conversion</h4>
+            <span id="rate-indicator" style="font-size:0.8rem; color:#64748b;">Fetching live rate...</span>
+          </div>
+          <span style="background:#e0f2fe; color:#0369a1; padding:4px 10px; border-radius:50px; font-size:0.75rem; font-weight:700;">Live Feed</span>
+        </div>
+
+        <div class="calc-input-group">
+          <input type="number" id="usd-input" value="50" min="1" step="1" placeholder="Enter USD amount" />
+          <button class="btn btn-primary" onclick="convertCurrency()">Calculate</button>
+        </div>
+
+        <div class="calc-res-box">
+          <div>
+            <div style="font-size:0.8rem; color:#64748b; text-transform:uppercase; font-weight:700;">Estimated INR Total</div>
+            <div id="converted-amount" style="font-size:1.8rem; font-weight:800; color:var(--dark); margin-top:2px;">₹0.00</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:0.75rem; color:#94a3b8;">Base Rate (1 USD)</div>
+            <div id="base-rate-text" style="font-weight:700; color:#0f172a;">--</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" style="background:#0f172a; color:#ffffff;">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="tag" style="background:rgba(255,255,255,0.1); color:#93c5fd; border:1px solid rgba(255,255,255,0.2);">Application Protocol</span>
+        <h2 style="color:#ffffff;">How To Mix & Formulate</h2>
+      </div>
+
+      <div class="steps-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:32px;">
+        <div class="step-card reveal" style="background:#1e293b; padding:32px; border-radius:16px; border:1px solid #334155;">
+          <div style="font-size:2rem; width:52px; height:52px; border-radius:12px; background:var(--primary); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; margin-bottom:20px;">1</div>
+          <h4 style="color:#fff; margin-bottom:10px;">Select Particle Micron</h4>
+          <p style="color:#94a3b8; font-size:0.92rem; line-height:1.6;">Choose temperature trigger (e.g., 31°C body heat) and compatible micron distribution for liquid resin, ink, or polymer extrusion.</p>
+        </div>
+
+        <div class="step-card reveal" style="background:#1e293b; padding:32px; border-radius:16px; border:1px solid #334155;">
+          <div style="font-size:2rem; width:52px; height:52px; border-radius:12px; background:#0284c7; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; margin-bottom:20px;">2</div>
+          <h4 style="color:#fff; margin-bottom:10px;">Blend into Clear Binder</h4>
+          <p style="color:#94a3b8; font-size:0.92rem; line-height:1.6;">Disperse at 1% to 5% by weight into neutral coatings, epoxy resins, acrylics, textile silkscreen inks, or plastisol.</p>
+        </div>
+
+        <div class="step-card reveal" style="background:#1e293b; padding:32px; border-radius:16px; border:1px solid #334155;">
+          <div style="font-size:2rem; width:52px; height:52px; border-radius:12px; background:#059669; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; margin-bottom:20px;">3</div>
+          <h4 style="color:#fff; margin-bottom:10px;">Instant Thermal/UV Reaction</h4>
+          <p style="color:#94a3b8; font-size:0.92rem; line-height:1.6;">Observe instant transition when applied onto automotive panels, apparel, mugs, packaging, or security anti-counterfeiting seals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter section" style="background:#111; color:#fff; text-align:center;">
+    <div class="container">
+      <div class="reveal" style="max-width:600px; margin:0 auto;">
+        <h2>Subscribe for Batch Spec Sheets</h2>
+        <p style="color:#999; margin:10px 0 28px;">Receive technical data bulletins, formulation ratios, and bulk arrival notices.</p>
+        <form onsubmit="handleNewsletter(event)" style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+          <input type="email" id="news-email" placeholder="Enter company or engineer email" required style="padding:14px 22px; border-radius:50px; border:1px solid #333; outline:none; min-width:280px; background:#222; color:#fff;" />
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo"><div class="logo-icon"></div> Americos</div>
+          <p style="color:rgba(255,255,255,0.5); margin-top:12px; font-size:0.88rem;">
+            Americos Chemicals Pvt Ltd.<br/>Specialty thermochromic, photochromic, and electroluminescent compounds.
+          </p>
+        </div>
+        <div>
+          <h5>Categories</h5>
+          <ul>
+            <li><a href="products.html?filter=thermochromic">Thermochromic Series</a></li>
+            <li><a href="products.html?filter=photochromic">Photochromic UV Series</a></li>
+            <li><a href="products.html?filter=glow">Phosphorescent Crystals</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Platform & Corporate</h5>
+          <ul>
+            <li><a href="about.html">Corporate Heritage</a></li>
+            <li><a href="contact.html">Safety & MSDS Desk</a></li>
+            <li><a href="admin.html">Staff Dashboard</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Technical Desk</h5>
+          <p style="color:rgba(255,255,255,0.5); font-size:0.88rem; line-height:1.7;">
+            📧 info@americosind.com<br/>
+            📞 +91 (XXX) XXX-XXXX<br/>
+            📍 Registered Industrial Area, India<br/>
+            Mon–Sat, 10am–6pm IST
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 Americos Chemicals Pvt Ltd. All rights reserved.</span>
+        <span style="color:rgba(255,255,255,0.4); font-size:0.82rem;">Engineered for Research & Manufacturing</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="js/products-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Particle generator for hero
+    function makeParticles() {
+      var cont = document.getElementById('particles-container');
+      if (!cont) return;
+      for (var i = 0; i < 24; i++) {
+        var p = document.createElement('div');
+        p.className = 'particle';
+        var size = Math.random() * 6 + 2;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.top = Math.random() * 100 + '%';
+        p.style.opacity = Math.random() * 0.7 + 0.2;
+        p.style.animationDuration = (Math.random() * 8 + 4) + 's';
+        p.style.animationDelay = (Math.random() * 5) + 's';
+        cont.appendChild(p);
+      }
+    }
+
+    // Product card generator
+    function createProductCard(p) {
+      var badgeHtml = p.badge ? '<span class="card-badge badge-' + p.badge.toLowerCase() + '">' + p.badge + '</span>' : '';
+      var stockBtn = p.inStock
+        ? '<button class="card-btn" onclick="addToCart(' + p.id + ', 1)">Add to Cart</button>'
+        : '<button class="card-btn" disabled style="background:#cbd5e1; cursor:not-allowed;">Out of Stock</button>';
+
+      return `
+        <div class="product-card reveal">
+          <div class="card-img" style="background: linear-gradient(135deg, ${p.colorFrom}22, ${p.colorTo}44);">
+            ${badgeHtml}
+            <span style="font-size: 4.2rem; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15));">${p.emoji}</span>
+          </div>
+          <div class="card-body">
+            <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--primary); font-weight:700;">
+              ${p.category} · ${p.weight}
+            </div>
+            <h3 class="card-name" style="margin:6px 0;">
+              <a href="product.html?id=${p.id}" style="color:var(--dark);">${p.name}</a>
+            </h3>
+            <div class="card-rating" style="margin-bottom:8px;">
+              ${window.renderStars(p.rating)} <span style="font-size:0.8rem; color:#64748b;">(${p.reviews})</span>
+            </div>
+            <div class="card-price">
+              <span class="price-current">₹${p.price.toLocaleString()}</span>
+              ${p.oldPrice ? '<span class="price-old">₹' + p.oldPrice.toLocaleString() + '</span>' : ''}
+            </div>
+            <div style="margin-top:14px;">
+              ${stockBtn}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Currency API Logic
+    var currentRate = 83.5; // realistic fallback
+    function fetchExchangeRate() {
+      fetch('https://api.exchangerate-api.com/v4/latest/USD')
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+          if (data && data.rates && data.rates.INR) {
+            currentRate = data.rates.INR;
+            document.getElementById('rate-indicator').textContent = 'Live rate synced: 1 USD = ₹' + currentRate.toFixed(2);
+            document.getElementById('base-rate-text').textContent = '₹' + currentRate.toFixed(2);
+            convertCurrency();
+          }
+        })
+        .catch(function() {
+          document.getElementById('rate-indicator').textContent = 'Using benchmark baseline: 1 USD = ₹' + currentRate.toFixed(2);
+          document.getElementById('base-rate-text').textContent = '₹' + currentRate.toFixed(2);
+          convertCurrency();
+        });
+    }
+
+    function convertCurrency() {
+      var val = parseFloat(document.getElementById('usd-input').value) || 0;
+      var total = val * currentRate;
+      document.getElementById('converted-amount').textContent = '₹' + total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function handleNewsletter(e) {
+      e.preventDefault();
+      var mail = document.getElementById('news-email').value;
+      if (mail) {
+        showToast('Subscribed! Spec updates sent to ' + mail);
+        e.target.reset();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      makeParticles();
+      fetchExchangeRate();
+
+      var featuredGrid = document.getElementById('featured-grid');
+      if (featuredGrid && typeof products !== 'undefined') {
+        var top6 = products.slice(0, 6);
+        featuredGrid.innerHTML = top6.map(createProductCard).join('');
+      }
+
+      var usdInp = document.getElementById('usd-input');
+      if (usdInp) {
+        usdInp.addEventListener('input', convertCurrency);
+      }
+    });
+  </script>
+</body>
+</html>

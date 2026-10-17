@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chemical Specification & Ordering | Americos Chemicals</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .prod-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 50px;
+      margin-top: 36px;
+      align-items: start;
+    }
+    .prod-visual {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      position: sticky;
+      top: 90px;
+      box-shadow: var(--shadow);
+    }
+    .prod-icon-large {
+      font-size: 8rem;
+      filter: drop-shadow(0 15px 25px rgba(0,0,0,0.18));
+      animation: floatUp 4s ease-in-out infinite alternate;
+    }
+    .swatch-display {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid #f1f5f9;
+    }
+    .swatch-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 24px;
+      font-size: 0.92rem;
+    }
+    .spec-table th, .spec-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #f1f5f9;
+      text-align: left;
+    }
+    .spec-table th {
+      color: #64748b;
+      font-weight: 600;
+      width: 38%;
+    }
+    .spec-table td {
+      color: var(--dark);
+      font-weight: 600;
+    }
+    .qty-control {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--border);
+      border-radius: var(--pill);
+      overflow: hidden;
+      width: fit-content;
+    }
+    .qty-control button {
+      background: #f8fafc;
+      border: none;
+      width: 40px;
+      height: 44px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--dark);
+    }
+    .qty-control span {
+      width: 44px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    @media (max-width: 860px) {
+      .prod-layout {
+        grid-template-columns: 1fr;
+      }
+      .prod-visual {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="index.html" class="logo">
+          <div class="logo-icon"></div>
+          Americos
+        </a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="admin.html" style="color:var(--primary); font-weight:700;">Admin Dashboard</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="cart.html" class="cart-btn" aria-label="View Shopping Cart">
+            🛍️ <span id="cart-count">0</span>
+          </a>
+          <button id="menu-toggle" aria-label="Toggle navigation menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENT CONTAINER -->
+  <section class="section" style="padding-top:20px;">
+    <div class="container">
+      <div id="product-container">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo"><div class="logo-icon"></div> Americos</div>
+          <p style="color:rgba(255,255,255,0.5); margin-top:12px; font-size:0.88rem;">
+            Americos Chemicals Pvt Ltd.<br/>Specialized reversible reactive pigments.
+          </p>
+        </div>
+        <div>
+          <h5>Categories</h5>
+          <ul>
+            <li><a href="products.html?filter=thermochromic">Thermochromic Series</a></li>
+            <li><a href="products.html?filter=photochromic">Photochromic UV Series</a></li>
+            <li><a href="products.html?filter=glow">Phosphorescent Crystals</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Technical Desk</h5>
+          <p style="color:rgba(255,255,255,0.5); font-size:0.88rem; line-height:1.7;">
+            📧 info@americosind.com<br/>
+            📞 +91 (XXX) XXX-XXXX<br/>
+            📍 Registered Industrial Area, India
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 Americos Chemicals Pvt Ltd. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/products-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    var currentItemQty = 1;
+
+    function adjustQty(delta) {
+      currentItemQty = Math.max(1, currentItemQty + delta);
+      document.getElementById('detail-qty').textContent = currentItemQty;
+    }
+
+    function addCurrentToCart(id) {
+      addToCart(id, currentItemQty);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var urlParams = new URLSearchParams(window.location.search);
+      var id = parseInt(urlParams.get('id'), 10) || 1;
+      var p = (typeof products !== 'undefined') ? products.find(function(item) { return item.id === id; }) : null;
+      var cont = document.getElementById('product-container');
+
+      if (!p) {
+        cont.innerHTML = `
+          <div class="empty-state" style="padding:80px 20px;">
+            <div class="icon">⚠️</div>
+            <h2>Specification Sheet Not Found</h2>
+            <p style="color:#64748b; margin:10px 0 20px;">The requested pigment SKU does not exist or has been retired from production.</p>
+            <a href="products.html" class="btn btn-primary">Return to Catalog</a>
+          </div>
+        `;
+        return;
+      }
+
+      var usesHtml = (p.uses || []).map(function(u) {
+        return '<span style="background:#f1f5f9; color:#334155; padding:6px 14px; border-radius:50px; font-size:0.8rem; font-weight:600;">' + u + '</span>';
+      }).join(' ');
+
+      var related = products.filter(function(r) { return r.category === p.category && r.id !== p.id; }).slice(0, 3);
+      var relatedHtml = related.map(function(r) {
+        return `
+          <div class="product-card">
+            <div class="card-img" style="height:140px; background:linear-gradient(135deg, ${r.colorFrom}22, ${r.colorTo}44);">
+              <span style="font-size:2.8rem;">${r.emoji}</span>
+            </div>
+            <div class="card-body">
+              <h4 style="font-size:0.92rem; margin:0 0 6px;"><a href="product.html?id=${r.id}" style="color:var(--dark);">${r.name}</a></h4>
+              <div style="font-weight:700; color:var(--primary);">₹${r.price.toLocaleString()}</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      cont.innerHTML = `
+        <div class="breadcrumb">
+          <a href="index.html">Home</a><span>/</span>
+          <a href="products.html">Catalog</a><span>/</span>
+          <span>${p.name}</span>
+        </div>
+
+        <div class="prod-layout">
+          <div class="prod-visual" style="background:linear-gradient(135deg, ${p.colorFrom}15, ${p.colorTo}30);">
+            <div class="prod-icon-large">${p.emoji}</div>
+            <div class="swatch-display">
+              <div style="text-align:center;">
+                <div class="swatch-circle" style="background:${p.colorFrom};"></div>
+                <span style="font-size:0.75rem; color:#64748b; margin-top:4px; display:block;">Rest State</span>
+              </div>
+              <span style="color:#94a3b8; font-weight:800;">⟶</span>
+              <div style="text-align:center;">
+                <div class="swatch-circle" style="background:${p.colorTo};"></div>
+                <span style="font-size:0.75rem; color:#64748b; margin-top:4px; display:block;">Active State</span>
+              </div>
+            </div>
+            <div style="font-size:0.8rem; color:#64748b; margin-top:14px;">
+              Trigger Mechanism: <strong>${p.activationTemp || 'N/A'}</strong>
+            </div>
+          </div>
+
+          <div>
+            <div style="font-size:0.82rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--primary); font-weight:800;">
+              Americos Chemical Compound · ${p.category}
+            </div>
+            <h1 style="font-size:2.2rem; margin:8px 0 12px; letter-spacing:-0.02em;">${p.name}</h1>
+            
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+              <div>${window.renderStars(p.rating)}</div>
+              <span style="font-size:0.88rem; color:#64748b;">${p.rating} (${p.reviews} lab verified reviews)</span>
+              ${p.inStock ? '<span style="background:#dcfce7; color:#15803d; font-size:0.75rem; font-weight:700; padding:2px 10px; border-radius:50px;">In Stock</span>' : '<span style="background:#fee2e2; color:#b91c1c; font-size:0.75rem; font-weight:700; padding:2px 10px; border-radius:50px;">Batch Sold Out</span>'}
+            </div>
+
+            <div style="display:flex; align-items:baseline; gap:12px; margin:20px 0;">
+              <span style="font-size:2rem; font-weight:800; color:var(--dark);">₹${p.price.toLocaleString()}</span>
+              ${p.oldPrice ? '<span style="font-size:1.2rem; color:#94a3b8; text-decoration:line-through;">₹' + p.oldPrice.toLocaleString() + '</span>' : ''}
+              <span style="font-size:0.85rem; color:#64748b;">Inclusive of GST (Single ${p.weight} pack)</span>
+            </div>
+
+            <p style="color:#475569; font-size:1.02rem; line-height:1.7; margin-bottom:24px;">
+              ${p.description}
+            </p>
+
+            <div style="margin-bottom:24px;">
+              <div style="font-size:0.82rem; font-weight:700; text-transform:uppercase; color:#64748b; margin-bottom:10px;">Recommended Substrates & Media</div>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">${usesHtml}</div>
+            </div>
+
+            <div style="display:flex; gap:16px; align-items:center; margin:32px 0;">
+              <div class="qty-control">
+                <button onclick="adjustQty(-1)">−</button>
+                <span id="detail-qty">1</span>
+                <button onclick="adjustQty(1)">+</button>
+              </div>
+              <button class="btn btn-primary btn-lg" style="flex:1;" ${p.inStock ? 'onclick="addCurrentToCart(' + p.id + ')"' : 'disabled style="background:#94a3b8; cursor:not-allowed;"'}>
+                ${p.inStock ? 'Add Pack to Cart 🛍️' : 'Out of Stock'}
+              </button>
+            </div>
+
+            <div style="background:#f8fafc; border-radius:12px; padding:20px; border:1px solid var(--border);">
+              <h4 style="margin:0 0 12px; font-size:0.95rem;">Chemical & Regulatory Specifications</h4>
+              <table class="spec-table">
+                <tr><th>Standard Batch Weight</th><td>${p.weight}</td></tr>
+                <tr><th>Transition Trigger</th><td>${p.activationTemp || 'Physical / Spectral trigger'}</td></tr>
+                <tr><th>Reversibility Cycles</th><td>Over 5,000+ continuous shifts</td></tr>
+                <tr><th>Solubility</th><td>Insoluble in water (dispersible microcapsules)</td></tr>
+                <tr><th>Safety & Toxicity</th><td>Non-toxic, EN-71 Part 3 & RoHS compliant</td></tr>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+        <div style="margin-top:60px; padding-top:40px; border-top:1px solid var(--border);">
+          <h3>Related Formulations in this Category</h3>
+          <div class="products-grid" style="margin-top:20px;">
+            ${relatedHtml}
+          </div>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>

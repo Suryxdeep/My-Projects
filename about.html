@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Corporate Heritage & Capability | Americos Chemicals</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+      margin-top: 40px;
+    }
+    .heritage-banner {
+      background: linear-gradient(135deg, #0f172a, #1e1b4b);
+      border-radius: 20px;
+      padding: 50px 40px;
+      color: white;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 36px;
+    }
+    .pillar-box {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .pillar-box:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 36px;
+    }
+    .team-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    .team-avatar {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.5rem;
+      margin: 0 auto 16px;
+    }
+    @media (max-width: 768px) {
+      .about-grid, .pillars-grid, .team-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="index.html" class="logo">
+          <div class="logo-icon"></div>
+          Americos
+        </a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="admin.html" style="color:var(--primary); font-weight:700;">Admin Dashboard</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="cart.html" class="cart-btn" aria-label="View Shopping Cart">
+            🛍️ <span id="cart-count">0</span>
+          </a>
+          <button id="menu-toggle" aria-label="Toggle navigation menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a><span>/</span><span>Corporate Profile</span>
+      </div>
+      <h1>Decades of Chemical Precision</h1>
+      <p style="color:rgba(255,255,255,0.7); margin-top:8px;">Pioneering smart optical & responsive pigment technology across domestic and international markets.</p>
+    </div>
+  </div>
+
+  <!-- STORY SECTION -->
+  <section class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="heritage-banner reveal">
+          <div style="font-size:4.5rem; margin-bottom:12px;">🔬</div>
+          <h2 style="color:white; margin-bottom:12px;">Americos Chemicals</h2>
+          <p style="color:#94a3b8; font-size:0.95rem; line-height:1.7;">
+            Formed as a premier industrial formulation house, Americos Chemicals Pvt Ltd has engineered auxiliary compounds, specialty textile pigments, and responsive coating technologies trusted by manufacturers worldwide.
+          </p>
+        </div>
+
+        <div class="reveal">
+          <span class="tag">Our Heritage</span>
+          <h2>From Industrial Foundations to Smart Color Science</h2>
+          <p style="color:#475569; line-height:1.7; margin-top:14px;">
+            Recognizing the rising demand for functional reactive smart coatings—from thermal overheating warnings in heavy machinery to security anti-counterfeit inks—Americos established dedicated microencapsulation synthesis facilities.
+          </p>
+          <p style="color:#475569; line-height:1.7; margin-top:10px;">
+            Today, our micro-scale thermochromic liquid crystal and leuco dye complexes deliver crisp, reversible transitions across rigorous industrial cycles.
+          </p>
+          <div style="margin-top:24px;">
+            <a href="products.html" class="btn btn-primary">Explore Our Pigments</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES PILLARS -->
+  <section class="section" style="background:#f8fafc;">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="tag">Our Commitments</span>
+        <h2>Why Formulators Partner with Americos</h2>
+      </div>
+
+      <div class="pillars-grid">
+        <div class="pillar-box reveal">
+          <div style="font-size:2.5rem; margin-bottom:12px;">🧪</div>
+          <h4>Lab Certified Stability</h4>
+          <p style="color:#64748b; font-size:0.9rem; line-height:1.6; margin-top:8px;">
+            Strict batch QC ensuring tight transition tolerance (±1.5°C) and uniform particle dispersion for smooth casting and spraying.
+          </p>
+        </div>
+
+        <div class="pillar-box reveal">
+          <div style="font-size:2.5rem; margin-bottom:12px;">🛡️</div>
+          <h4>Non-Toxic Compliance</h4>
+          <p style="color:#64748b; font-size:0.9rem; line-height:1.6; margin-top:8px;">
+            Free from heavy metals, meeting international EN-71 Part 3, RoHS, and modern chemical workplace safety handling standards.
+          </p>
+        </div>
+
+        <div class="pillar-box reveal">
+          <div style="font-size:2.5rem; margin-bottom:12px;">🚚</div>
+          <h4>Pan-India Supply Chain</h4>
+          <p style="color:#64748b; font-size:0.9rem; line-height:1.6; margin-top:8px;">
+            Immediate stock dispatches from 25g prototyping batches up to 500kg industrial drum runs with door-to-door courier logistics.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM LEADERSHIP -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="tag">Leadership</span>
+        <h2>Technical Formulation Team</h2>
+      </div>
+
+      <div class="team-grid">
+        <div class="team-card reveal">
+          <div class="team-avatar" style="background:#fee2e2; color:#b91c1c;">AC</div>
+          <h4>Executive Directorate</h4>
+          <p style="color:#64748b; font-size:0.85rem; margin-top:4px;">Americos Chemicals Board</p>
+          <p style="color:#94a3b8; font-size:0.8rem; margin-top:10px;">Steering chemical synthesis innovation and international enterprise contracts.</p>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-avatar" style="background:#e0f2fe; color:#0369a1;">RD</div>
+          <h4>R&D Formulation Lead</h4>
+          <p style="color:#64748b; font-size:0.85rem; margin-top:4px;">Polymer & Dye Engineering</p>
+          <p style="color:#94a3b8; font-size:0.8rem; margin-top:10px;">Overseeing microcapsule integrity and custom activation calibration.</p>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-avatar" style="background:#dcfce7; color:#15803d;">TS</div>
+          <h4>Technical Services Desk</h4>
+          <p style="color:#64748b; font-size:0.85rem; margin-top:4px;">Customer & Application Support</p>
+          <p style="color:#94a3b8; font-size:0.8rem; margin-top:10px;">Providing formula ratios, carrier solvent guidance, and pilot testing advice.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo"><div class="logo-icon"></div> Americos</div>
+          <p style="color:rgba(255,255,255,0.5); margin-top:12px; font-size:0.88rem;">Americos Chemicals Pvt Ltd.</p>
+        </div>
+        <div>
+          <h5>Categories</h5>
+          <ul>
+            <li><a href="products.html?filter=thermochromic">Thermochromic Series</a></li>
+            <li><a href="products.html?filter=photochromic">Photochromic UV Series</a></li>
+            <li><a href="products.html?filter=glow">Phosphorescent Crystals</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Technical Desk</h5>
+          <p style="color:rgba(255,255,255,0.5); font-size:0.88rem; line-height:1.7;">
+            📧 info@americosind.com<br/>
+            📍 Registered Industrial Area, India
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 Americos Chemicals Pvt Ltd. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/products-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

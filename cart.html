@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Procurement Cart | Americos Chemicals</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .cart-layout {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 36px;
+      margin-top: 36px;
+      align-items: start;
+    }
+    .cart-table-panel {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .cart-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .cart-row:last-child {
+      border-bottom: none;
+    }
+    .cart-item-visual {
+      width: 72px;
+      height: 72px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      flex-shrink: 0;
+      border: 1px solid #f1f5f9;
+    }
+    .cart-summary-panel {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      position: sticky;
+      top: 90px;
+      box-shadow: var(--shadow);
+    }
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      font-size: 0.95rem;
+      color: #64748b;
+    }
+    .summary-line.total {
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+      margin-top: 18px;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--dark);
+    }
+    .qty-btn {
+      width: 32px;
+      height: 34px;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+    @media (max-width: 860px) {
+      .cart-layout { grid-template-columns: 1fr; }
+      .cart-summary-panel { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="index.html" class="logo">
+          <div class="logo-icon"></div>
+          Americos
+        </a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="admin.html" style="color:var(--primary); font-weight:700;">Admin Dashboard</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="cart.html" class="cart-btn" aria-label="View Shopping Cart">
+            🛍️ <span id="cart-count">0</span>
+          </a>
+          <button id="menu-toggle" aria-label="Toggle navigation menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a><span>/</span><span>Cart</span>
+      </div>
+      <h1>Procurement Cart</h1>
+      <p style="color:rgba(255,255,255,0.7); margin-top:8px;">Standard packaging dispatch & sample orders.</p>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top:20px;">
+    <div class="container">
+      <div id="cart-container">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo"><div class="logo-icon"></div> Americos</div>
+          <p style="color:rgba(255,255,255,0.5); margin-top:12px; font-size:0.88rem;">Americos Chemicals Pvt Ltd.</p>
+        </div>
+        <div>
+          <h5>Categories</h5>
+          <ul>
+            <li><a href="products.html?filter=thermochromic">Thermochromic Series</a></li>
+            <li><a href="products.html?filter=photochromic">Photochromic UV Series</a></li>
+            <li><a href="products.html?filter=glow">Phosphorescent Crystals</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Technical Desk</h5>
+          <p style="color:rgba(255,255,255,0.5); font-size:0.88rem; line-height:1.7;">
+            📧 info@americosind.com<br/>
+            📍 Registered Industrial Area, India
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 Americos Chemicals Pvt Ltd. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/products-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    function renderCartPage() {
+      var cart = getCart();
+      var container = document.getElementById('cart-container');
+
+      if (!cart || cart.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state" style="padding:80px 20px; background:white; border-radius:16px; border:1px solid var(--border);">
+            <div class="icon">🛍️</div>
+            <h3>Your Procurement Cart is Empty</h3>
+            <p style="color:#64748b; margin:10px 0 24px;">Browse our formulation catalog to add standard packs and chemical samples.</p>
+            <a href="products.html" class="btn btn-primary">Browse Pigment Catalog</a>
+          </div>
+        `;
+        return;
+      }
+
+      var subtotal = getCartTotal();
+      var shipping = subtotal >= 999 ? 0 : 120;
+      var total = subtotal + shipping;
+
+      var itemsHtml = cart.map(function(item) {
+        var p = (typeof products !== 'undefined') ? products.find(function(x) { return x.id === item.id; }) : null;
+        var emoji = item.emoji || (p ? p.emoji : '📦');
+        var colorBg = p ? p.colorFrom + '22' : '#f1f5f9';
+
+        return `
+          <div class="cart-row">
+            <div class="cart-item-visual" style="background:${colorBg};">${emoji}</div>
+            <div style="flex:1;">
+              <h4 style="margin:0 0 4px; font-size:1rem;"><a href="product.html?id=${item.id}" style="color:var(--dark);">${item.name}</a></h4>
+              <span style="font-size:0.8rem; color:#64748b;">Pack Unit: ${item.weight || 'Standard'}</span>
+              <div style="font-size:0.95rem; font-weight:700; color:var(--dark); margin-top:6px;">₹${(item.price * item.qty).toLocaleString()}</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <button class="qty-btn" onclick="updateQty(${item.id}, ${item.qty - 1}); renderCartPage();">">−</button>
+              <span style="font-weight:700; width:24px; text-align:center;">${item.qty}</span>
+              <button class="qty-btn" onclick="updateQty(${item.id}, ${item.qty + 1}); renderCartPage();">+</button>
+            </div>
+            <button onclick="removeFromCart(${item.id}); renderCartPage();" style="background:none; border:none; color:#ef4444; font-size:1.2rem; cursor:pointer; padding:6px 10px;" title="Remove">✕</button>
+          </div>
+        `;
+      }).join('');
+
+      container.innerHTML = `
+        <div class="cart-layout">
+          <div class="cart-table-panel">
+            <div style="padding:18px 24px; border-bottom:1px solid var(--border); font-weight:700; font-size:1.05rem; display:flex; justify-content:space-between;">
+              <span>Selected Chemicals (${cart.length})</span>
+              <button onclick="localStorage.removeItem('americos_cart'); updateCartBadge(); renderCartPage();" style="background:none; border:none; color:#ef4444; font-size:0.85rem; cursor:pointer;">Clear Cart</button>
+            </div>
+            ${itemsHtml}
+          </div>
+
+          <div class="cart-summary-panel">
+            <h3 style="margin-top:0; font-size:1.15rem;">Commercial Order Summary</h3>
+            
+            <div class="summary-line">
+              <span>Item Subtotal</span>
+              <span style="font-weight:700; color:var(--dark);">₹${subtotal.toLocaleString()}</span>
+            </div>
+            <div class="summary-line">
+              <span>Standard Insured Shipping</span>
+              <span>${shipping === 0 ? '<strong style="color:#16a34a;">FREE</strong>' : '₹' + shipping}</span>
+            </div>
+            ${shipping > 0 ? `<div style="font-size:0.78rem; color:#64748b; margin-bottom:12px;">Add ₹${(999 - subtotal).toLocaleString()} more for free shipping tier.</div>` : ''}
+
+            <div style="display:flex; gap:8px; margin:20px 0;">
+              <input type="text" id="coupon-code" placeholder="Promo / Client Code" style="flex:1; padding:10px 14px; border-radius:var(--pill); border:1px solid var(--border); font-size:0.88rem; outline:none;" />
+              <button class="btn btn-outline btn-sm" onclick="applyPromo()">Apply</button>
+            </div>
+
+            <div class="summary-line total">
+              <span>Payable Total</span>
+              <span>₹${total.toLocaleString()}</span>
+            </div>
+
+            <button class="btn btn-primary btn-block" style="margin-top:16px; padding:16px;" onclick="checkoutNotice()">
+              Proceed to Dispatch Checkout →
+            </button>
+            
+            <div style="text-align:center; font-size:0.75rem; color:#94a3b8; margin-top:16px;">
+              🔒 Direct B2B Bank Transfer / Razorpay & Stripe integration ready
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function applyPromo() {
+      var code = (document.getElementById('coupon-code').value || '').trim().toUpperCase();
+      if (code === 'AMERICOS10') {
+        showToast('Promo Code Validated: 10% commercial rebate applied.');
+      } else {
+        showToast('Invalid or expired coupon code.', 'error');
+      }
+    }
+
+    function checkoutNotice() {
+      alert('Inquiry Order Dispatched!\n\nThis checkout connects with your company gateway or ERP integration.\nThank you for choosing Americos Chemicals Pvt Ltd.');
+    }
+
+    document.addEventListener('DOMContentLoaded', renderCartPage);
+  </script>
+</body>
+</html>

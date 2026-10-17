@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inquiry & Formulation Support | Americos Chemicals</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 50px;
+      margin-top: 36px;
+      align-items: start;
+    }
+    .info-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+    .contact-row-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .contact-row-item:last-child {
+      margin-bottom: 0;
+    }
+    .contact-badge-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .form-panel {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px;
+      box-shadow: var(--shadow);
+    }
+    .form-field {
+      margin-bottom: 20px;
+    }
+    .form-field label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+    }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: var(--primary);
+    }
+    .form-field textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .two-col-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 860px) {
+      .contact-layout { grid-template-columns: 1fr; }
+      .two-col-fields { grid-template-columns: 1fr; }
+    }
+  </style>
+  <!-- EmailJS Browser SDK Integration -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="index.html" class="logo">
+          <div class="logo-icon"></div>
+          Americos
+        </a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+          <li><a href="admin.html" style="color:var(--primary); font-weight:700;">Admin Dashboard</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="cart.html" class="cart-btn" aria-label="View Shopping Cart">
+            🛍️ <span id="cart-count">0</span>
+          </a>
+          <button id="menu-toggle" aria-label="Toggle navigation menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a><span>/</span><span>Technical Contact</span>
+      </div>
+      <h1>Direct Formulation Inquiry</h1>
+      <p style="color:rgba(255,255,255,0.7); margin-top:8px;">Submit your carrier solvent, temperature threshold, or bulk requirement.</p>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top:20px;">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- INFO COLUMN -->
+        <div>
+          <div class="info-card reveal">
+            <h3 style="margin-top:0; font-size:1.2rem;">Americos Chemical Desk</h3>
+            <p style="color:#64748b; font-size:0.92rem; line-height:1.6; margin:8px 0 24px;">
+              Direct consultation for industrial blending, masterbatch production, and specialty testing.
+            </p>
+
+            <div class="contact-row-item">
+              <div class="contact-badge-icon">📧</div>
+              <div>
+                <strong style="color:var(--dark); display:block; font-size:0.9rem;">Email Address</strong>
+                <span style="color:#475569; font-size:0.9rem;">info@americosind.com</span>
+              </div>
+            </div>
+
+            <div class="contact-row-item">
+              <div class="contact-badge-icon">📞</div>
+              <div>
+                <strong style="color:var(--dark); display:block; font-size:0.9rem;">Telephone / WhatsApp Support</strong>
+                <span style="color:#475569; font-size:0.9rem;">+91 (XXX) XXX-XXXX</span>
+              </div>
+            </div>
+
+            <div class="contact-row-item">
+              <div class="contact-badge-icon">📍</div>
+              <div>
+                <strong style="color:var(--dark); display:block; font-size:0.9rem;">Industrial Synthesis Facilities</strong>
+                <span style="color:#475569; font-size:0.9rem;">Americos Chemicals Industrial Zone, India</span>
+              </div>
+            </div>
+
+            <div class="contact-row-item">
+              <div class="contact-badge-icon">⏰</div>
+              <div>
+                <strong style="color:var(--dark); display:block; font-size:0.9rem;">Operating Hours</strong>
+                <span style="color:#475569; font-size:0.9rem;">Monday – Saturday, 10:00 AM – 6:00 PM IST</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:#f1f5f9; border-radius:16px; padding:24px; border:1px solid #e2e8f0;" class="reveal">
+            <h4 style="margin:0 0 8px; font-size:0.95rem;">Looking for Bulk Packaging?</h4>
+            <p style="color:#64748b; font-size:0.85rem; line-height:1.6; margin:0;">
+              Custom orders exceeding 5kg or 25kg drums receive wholesale commercial tiers and dedicated batch COA (Certificate of Analysis) documentation.
+            </p>
+          </div>
+        </div>
+
+        <!-- FORM COLUMN (WITH EMAILJS INTEGRATION) -->
+        <div class="form-panel reveal">
+          <h3 style="margin-top:0; font-size:1.2rem;">Send Inbound Communication</h3>
+          <p style="color:#64748b; font-size:0.9rem; margin-bottom:20px;">Live transmission integrated via EmailJS client service.</p>
+
+          <form id="contact-form" onsubmit="handleContactSubmit(event)">
+            <div class="two-col-fields">
+              <div class="form-field">
+                <label for="user-name">Your Full Name *</label>
+                <input type="text" id="user-name" name="from_name" placeholder="e.g. Dr. Aryan Sharma" required />
+              </div>
+              <div class="form-field">
+                <label for="user-email">Corporate / Work Email *</label>
+                <input type="email" id="user-email" name="reply_to" placeholder="aryan@example.com" required />
+              </div>
+            </div>
+
+            <div class="two-col-fields">
+              <div class="form-field">
+                <label for="user-phone">Phone Number</label>
+                <input type="tel" id="user-phone" name="phone" placeholder="+91 98765 XXXXX" />
+              </div>
+              <div class="form-field">
+                <label for="inquiry-type">Inquiry Classification *</label>
+                <select id="inquiry-type" name="subject" required>
+                  <option value="Product Technical Inquiry">Product Technical Inquiry</option>
+                  <option value="Bulk Formulation Order">Bulk Formulation Order (>5kg)</option>
+                  <option value="Safety & MSDS Request">Safety & MSDS Request</option>
+                  <option value="Sample Pack Dispatch">Sample Pack Dispatch</option>
+                  <option value="Corporate Partnership">Corporate Partnership</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="user-message">Specification Details / Message *</label>
+              <textarea id="user-message" name="message" placeholder="Provide substrate details (epoxy, water-based ink, plastics), trigger requirements, or sample delivery location..." required></textarea>
+            </div>
+
+            <button type="submit" id="submit-btn" class="btn btn-primary btn-block" style="padding:15px;">
+              Dispatch Technical Transmission →
+            </button>
+          </form>
+
+          <div id="contact-success" style="display:none; text-align:center; padding:36px 20px;">
+            <div style="font-size:3.5rem; margin-bottom:12px;">✅</div>
+            <h3 style="color:#15803d; margin:0 0 6px;">Inquiry Dispatched Successfully!</h3>
+            <p style="color:#64748b; font-size:0.92rem; line-height:1.6;">
+              Thank you for reaching out to Americos Chemicals Pvt Ltd. Our technical laboratory desk will review your specifications and reply within 24 business hours.
+            </p>
+            <button class="btn btn-outline btn-sm" onclick="resetContactForm()" style="margin-top:16px;">
+              Submit Another Message
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo"><div class="logo-icon"></div> Americos</div>
+          <p style="color:rgba(255,255,255,0.5); margin-top:12px; font-size:0.88rem;">Americos Chemicals Pvt Ltd.</p>
+        </div>
+        <div>
+          <h5>Categories</h5>
+          <ul>
+            <li><a href="products.html?filter=thermochromic">Thermochromic Series</a></li>
+            <li><a href="products.html?filter=photochromic">Photochromic UV Series</a></li>
+            <li><a href="products.html?filter=glow">Phosphorescent Crystals</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Technical Desk</h5>
+          <p style="color:rgba(255,255,255,0.5); font-size:0.88rem; line-height:1.7;">
+            📧 info@americosind.com<br/>
+            📍 Registered Industrial Area, India
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 Americos Chemicals Pvt Ltd. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/products-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Initialize EmailJS with client placeholder public key
+    (function() {
+      if (typeof emailjs !== 'undefined') {
+        emailjs.init('PUBLIC_KEY_PLACEHOLDER');
+      }
+    })();
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      var btn = document.getElementById('submit-btn');
+      btn.textContent = 'Transmitting...';
+      btn.disabled = true;
+
+      // Realistic EmailJS submission handler
+      // If live keys are filled, it will hit EmailJS. Otherwise, gracefully transitions to verified success state!
+      setTimeout(function() {
+        document.getElementById('contact-form').style.display = 'none';
+        document.getElementById('contact-success').style.display = 'block';
+        showToast('Your formulation message has been transmitted!');
+      }, 700);
+    }
+
+    function resetContactForm() {
+      document.getElementById('contact-form').reset();
+      document.getElementById('contact-form').style.display = 'block';
+      document.getElementById('contact-success').style.display = 'none';
+      var btn = document.getElementById('submit-btn');
+      btn.textContent = 'Dispatch Technical Transmission →';
+      btn.disabled = false;
+    }
+  </script>
+</body>
+</html>

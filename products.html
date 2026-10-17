@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chemical Catalog & Formulas | Americos Chemicals</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .catalog-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 36px;
+      margin-top: 40px;
+      align-items: start;
+    }
+    .filter-panel {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      position: sticky;
+      top: 90px;
+    }
+    .filter-group {
+      margin-bottom: 24px;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 20px;
+    }
+    .filter-group:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .filter-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      color: var(--dark);
+    }
+    .filter-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-size: 0.92rem;
+      cursor: pointer;
+      color: #475569;
+    }
+    .filter-option input {
+      accent-color: var(--primary);
+      width: 16px;
+      height: 16px;
+    }
+    .catalog-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+      background: #ffffff;
+      padding: 16px 20px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .search-box {
+      flex: 1;
+      min-width: 240px;
+      position: relative;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 10px 16px 10px 38px;
+      border: 1px solid var(--border);
+      border-radius: var(--pill);
+      font-size: 0.92rem;
+      outline: none;
+      font-family: inherit;
+    }
+    .search-box input:focus {
+      border-color: var(--primary);
+    }
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+    }
+    .sort-select {
+      padding: 10px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--pill);
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      background: white;
+      cursor: pointer;
+    }
+    @media (max-width: 860px) {
+      .catalog-layout {
+        grid-template-columns: 1fr;
+      }
+      .filter-panel {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="index.html" class="logo">
+          <div class="logo-icon"></div>
+          Americos
+        </a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html" class="active">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="admin.html" style="color:var(--primary); font-weight:700;">Admin Dashboard</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="cart.html" class="cart-btn" aria-label="View Shopping Cart">
+            🛍️ <span id="cart-count">0</span>
+          </a>
+          <button id="menu-toggle" aria-label="Toggle navigation menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a><span>/</span><span>Chemical Catalog</span>
+      </div>
+      <h1>Specialty Pigment Formulations</h1>
+      <p style="color:rgba(255,255,255,0.7); margin-top:8px;">Standardized commercial batches: Thermochromic, Photochromic & Luminescent powders.</p>
+    </div>
+  </div>
+
+  <!-- MAIN CATALOG -->
+  <section class="section" style="padding-top:20px;">
+    <div class="container">
+      <div class="catalog-layout">
+        
+        <!-- SIDEBAR FILTERS -->
+        <aside class="filter-panel">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+            <h3 style="font-size:1.05rem; margin:0;">Filters</h3>
+            <button onclick="resetFilters()" style="background:none; border:none; color:var(--primary); font-size:0.8rem; cursor:pointer; font-weight:600;">Reset All</button>
+          </div>
+
+          <div class="filter-group">
+            <div class="filter-title">Category</div>
+            <label class="filter-option">
+              <input type="checkbox" name="cat" value="thermochromic" onchange="applyFilters()" />
+              Thermochromic (5)
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" name="cat" value="photochromic" onchange="applyFilters()" />
+              Photochromic UV (4)
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" name="cat" value="glow" onchange="applyFilters()" />
+              Phosphorescent Glow (3)
+            </label>
+          </div>
+
+          <div class="filter-group">
+            <div class="filter-title">Availability</div>
+            <label class="filter-option">
+              <input type="checkbox" id="instock-only" onchange="applyFilters()" />
+              In-Stock Only
+            </label>
+          </div>
+
+          <div class="filter-group">
+            <div class="filter-title">Price Range</div>
+            <label class="filter-option">
+              <input type="radio" name="price-range" value="all" checked onchange="applyFilters()" />
+              All Prices
+            </label>
+            <label class="filter-option">
+              <input type="radio" name="price-range" value="under-1000" onchange="applyFilters()" />
+              Under ₹1,000
+            </label>
+            <label class="filter-option">
+              <input type="radio" name="price-range" value="1000-1800" onchange="applyFilters()" />
+              ₹1,000 - ₹1,800
+            </label>
+            <label class="filter-option">
+              <input type="radio" name="price-range" value="above-1800" onchange="applyFilters()" />
+              Above ₹1,800
+            </label>
+          </div>
+        </aside>
+
+        <!-- MAIN PRODUCTS AREA -->
+        <div>
+          <div class="catalog-topbar">
+            <div class="search-box">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="catalog-search" placeholder="Search by name, temperature, chemical uses..." oninput="applyFilters()" />
+            </div>
+            <div style="display:flex; align-items:center; gap:12px;">
+              <span id="results-count" style="font-size:0.85rem; color:#64748b; font-weight:600;">Showing 12 items</span>
+              <select id="sort-select" class="sort-select" onchange="applyFilters()">
+                <option value="featured">Featured First</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Highest Rated</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="products-grid" id="products-grid">
+            <!-- Dynamic products -->
+          </div>
+
+          <div id="empty-state" class="empty-state" style="display:none; background:white; padding:60px; border-radius:16px; border:1px solid var(--border); margin-top:20px;">
+            <div class="icon">🧪</div>
+            <h3>No Pigments Found</h3>
+            <p style="color:#64748b; margin-top:6px;">Try adjusting your search criteria or resetting filters.</p>
+            <button class="btn btn-primary" onclick="resetFilters()" style="margin-top:18px;">Reset Filter Settings</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo"><div class="logo-icon"></div> Americos</div>
+          <p style="color:rgba(255,255,255,0.5); margin-top:12px; font-size:0.88rem;">
+            Americos Chemicals Pvt Ltd.<br/>Supplying state-of-the-art microencapsulated pigments.
+          </p>
+        </div>
+        <div>
+          <h5>Categories</h5>
+          <ul>
+            <li><a href="products.html?filter=thermochromic">Thermochromic Series</a></li>
+            <li><a href="products.html?filter=photochromic">Photochromic UV Series</a></li>
+            <li><a href="products.html?filter=glow">Phosphorescent Crystals</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Platform & Corporate</h5>
+          <ul>
+            <li><a href="about.html">Corporate Heritage</a></li>
+            <li><a href="contact.html">Safety & MSDS Desk</a></li>
+            <li><a href="admin.html">Staff Dashboard</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Technical Desk</h5>
+          <p style="color:rgba(255,255,255,0.5); font-size:0.88rem; line-height:1.7;">
+            📧 info@americosind.com<br/>
+            📞 +91 (XXX) XXX-XXXX<br/>
+            📍 Registered Industrial Area, India
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 Americos Chemicals Pvt Ltd. All rights reserved.</span>
+        <span style="color:rgba(255,255,255,0.4); font-size:0.82rem;">Engineered for Research & Manufacturing</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/products-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    function renderProductCard(p) {
+      var badgeHtml = p.badge ? '<span class="card-badge badge-' + p.badge.toLowerCase() + '">' + p.badge + '</span>' : '';
+      var stockBtn = p.inStock
+        ? '<button class="card-btn" onclick="addToCart(' + p.id + ', 1)">Add to Cart</button>'
+        : '<button class="card-btn" disabled style="background:#cbd5e1; cursor:not-allowed;">Out of Stock</button>';
+
+      return `
+        <div class="product-card">
+          <div class="card-img" style="background: linear-gradient(135deg, ${p.colorFrom}22, ${p.colorTo}44);">
+            ${badgeHtml}
+            <span style="font-size: 4.2rem; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15));">${p.emoji}</span>
+          </div>
+          <div class="card-body">
+            <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--primary); font-weight:700;">
+              ${p.category} · ${p.weight}
+            </div>
+            <h3 class="card-name" style="margin:6px 0;">
+              <a href="product.html?id=${p.id}" style="color:var(--dark);">${p.name}</a>
+            </h3>
+            <div class="card-rating" style="margin-bottom:8px;">
+              ${window.renderStars(p.rating)} <span style="font-size:0.8rem; color:#64748b;">(${p.reviews})</span>
+            </div>
+            <div class="card-price">
+              <span class="price-current">₹${p.price.toLocaleString()}</span>
+              ${p.oldPrice ? '<span class="price-old">₹' + p.oldPrice.toLocaleString() + '</span>' : ''}
+            </div>
+            <div style="margin-top:14px;">
+              ${stockBtn}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function applyFilters() {
+      if (typeof products === 'undefined') return;
+
+      var searchVal = (document.getElementById('catalog-search').value || '').toLowerCase().trim();
+      var inStockOnly = document.getElementById('instock-only').checked;
+      var sortVal = document.getElementById('sort-select').value;
+
+      var checkedCats = [];
+      document.querySelectorAll('input[name="cat"]:checked').forEach(function(cb) {
+        checkedCats.push(cb.value);
+      });
+
+      var priceRange = document.querySelector('input[name="price-range"]:checked').value;
+
+      var filtered = products.filter(function(p) {
+        // category
+        if (checkedCats.length > 0 && !checkedCats.includes(p.category)) {
+          return false;
+        }
+        // stock
+        if (inStockOnly && !p.inStock) {
+          return false;
+        }
+        // price
+        if (priceRange === 'under-1000' && p.price >= 1000) return false;
+        if (priceRange === '1000-1800' && (p.price < 1000 || p.price > 1800)) return false;
+        if (priceRange === 'above-1800' && p.price <= 1800) return false;
+
+        // search query
+        if (searchVal) {
+          var matchName = p.name.toLowerCase().includes(searchVal);
+          var matchDesc = p.description.toLowerCase().includes(searchVal);
+          var matchAct = (p.activationTemp || '').toLowerCase().includes(searchVal);
+          var matchUses = (p.uses || []).some(function(u) { return u.toLowerCase().includes(searchVal); });
+          if (!matchName && !matchDesc && !matchAct && !matchUses) return false;
+        }
+
+        return true;
+      });
+
+      // sorting
+      if (sortVal === 'price-low') {
+        filtered.sort(function(a, b) { return a.price - b.price; });
+      } else if (sortVal === 'price-high') {
+        filtered.sort(function(a, b) { return b.price - a.price; });
+      } else if (sortVal === 'rating') {
+        filtered.sort(function(a, b) { return b.rating - a.rating; });
+      }
+
+      // render
+      var grid = document.getElementById('products-grid');
+      var empty = document.getElementById('empty-state');
+      var count = document.getElementById('results-count');
+
+      count.textContent = 'Showing ' + filtered.length + ' item' + (filtered.length === 1 ? '' : 's');
+
+      if (filtered.length === 0) {
+        grid.style.display = 'none';
+        empty.style.display = 'block';
+      } else {
+        empty.style.display = 'none';
+        grid.style.display = 'grid';
+        grid.innerHTML = filtered.map(renderProductCard).join('');
+      }
+    }
+
+    function resetFilters() {
+      document.getElementById('catalog-search').value = '';
+      document.getElementById('instock-only').checked = false;
+      document.querySelectorAll('input[name="cat"]').forEach(function(cb) { cb.checked = false; });
+      document.querySelector('input[name="price-range"][value="all"]').checked = true;
+      document.getElementById('sort-select').value = 'featured';
+      applyFilters();
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Handle URL param filter e.g. ?filter=thermochromic
+      var urlParams = new URLSearchParams(window.location.search);
+      var catParam = urlParams.get('filter');
+      if (catParam) {
+        var targetCb = document.querySelector('input[name="cat"][value="' + catParam + '"]');
+        if (targetCb) targetCb.checked = true;
+      }
+      applyFilters();
+    });
+  </script>
+</body>
+</html>
